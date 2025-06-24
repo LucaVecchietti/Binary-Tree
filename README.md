@@ -40,23 +40,6 @@ Un albero AVL è una struttura dati auto-bilanciante che garantisce operazioni e
 
 ---
 
-## 🚀 How to Run / Come eseguire
-
-### Compile and execute / Compilazione ed esecuzione
-
-```bash
-g++ -o avl AVL_tree.cpp
-./avl
-```
-
-### Output
-
-```
-AVL Tree constructed successfully.
-```
-
----
-
 ## 🔍 Technical Overview / Dettagli tecnici
 
 ### Node structure / Struttura del nodo
@@ -73,26 +56,15 @@ struct Node {
 - `rotationRight()` → for Left-Left imbalance  
 - `rotationLeft()` → for Right-Right imbalance  
 - Combined rotations handle Left-Right and Right-Left cases
+<br>
 
 - `rotationRight()` → per squilibrio Left-Left  
 - `rotationLeft()` → per squilibrio Right-Right  
 - Le rotazioni combinate gestiscono i casi Left-Right e Right-Left
+<br>
 
 The `balance()` function updates the height and performs the appropriate rotation.  
 La funzione `balance()` aggiorna l'altezza e applica la rotazione necessaria.
-
----
-
-## 🧪 Example / Esempio
-
-In `main()` the tree is built using:
-
-```cpp
-int keys[] = {10, 20, 30, 40, 50, 25};
-```
-
-The tree self-balances after every insertion.  
-L'albero si bilancia automaticamente dopo ogni inserimento.
 
 ---
 
@@ -102,6 +74,7 @@ L'albero si bilancia automaticamente dopo ogni inserimento.
 - 📤 In-order / Pre-order / Post-order traversals  
 - 🖼️ Console or graphical tree visualization  
 - 📊 Store metadata in nodes (e.g. subtree sizes)
+<br>
 
 - 🔍 Funzione di ricerca binaria  
 - 📤 Visite in-order, pre-order, post-order  
@@ -146,7 +119,84 @@ Un Segment tree è un albero di ricerca binaria che garantisce lo svolgimento di
 - :white_check_mark: Ottieni la somma di un range (`GetSum`).  
 - :white_check_mark: Lazy propagation per aggiornamenti efficienti.
 - :white_check_mark: Inserisci i nodi solo se necessario (`insert`).  
-- :white_check_mark: Supporta più versioni, rendendo possibili operazioni sullo storico.  
+- :white_check_mark: Supporta più versioni, rendendo possibili operazioni sullo storico.
+
+## 🔍 Technical Overview / Dettagli tecnici
+
+### Node structure / Struttura del nodo  (Static Segment Tree)
+
+```cpp
+struct Node { 
+    int start, end, sum, update;    
+    Node *left, *right; 
+
+    Node(int s, int e) : start(s), end(e), sum(0), update(0), left(nullptr), right(nullptr) {}
+};
+```
+- `push()` → for push the update to the children nodes
+- The push() function is used to manage the lazy propagation  
+- `UpdateRange()` → for update all the elements in a given range  
+- `GetSum()` → for query the sum in a given range
+<br>
+
+- `push()` → per propagare l'aggiornamento ai nodi figli
+- La funzione  push() serve per gestire la propagazione pigra dell'aggiornamento  
+- `UpdateRange()` → per aggiornare un range di elementi  
+- `GetSum()` → per ottenere la somma di un range di elementi
+
+### Tree structure / Struttura dell'albero (Dynamic Segment Tree)
+
+```cpp
+class DynamicST {
+    private:
+
+        struct Node { 
+            int start, end, sum, update; 
+            Node *left, *right;
+
+            Node(int s, int e) : start(s), end(e), sum(0), update(0), left(nullptr), right(nullptr) {}
+        };
+        
+        vector <Node*> roots; 
+        int currentVersion; 
+        int size;
+
+        void push(Node *&node) {}
+
+        void insert(int key, int value, Node *&node, int start = 0, int end = -1) {}
+
+        void UpdateRange(Node *&node, int start, int end, int value) {}
+
+        int GetSum(Node *&node, int start, int end) {}
+
+    public:
+        DynamicST(int size) : size(size), currentVersion(0) {}
+
+        void insert(int key, int value) {}
+
+        void UpdateRange(int start, int end, int value){}
+
+        int GetSum(int start, int end, int version = -1) {}
+
+};
+```
+
+- `insert()' → for insert a new node  
+- `push()` → for push the update to the children nodes  
+- The push() function is used to manage the lazy propagation  
+- `UpdateRange()` → for update all the elements in a given range  
+- `GetSum()` → for query the sum in a given range  
+<br>
+
+- `insert()' → per inserire un nuovo nodo  
+- `push()` → per propagare l'aggiornamento ai nodi figli  
+- La funzione  push() serve per gestire la propagazione pigra dell'aggiornamento  
+- `UpdateRange()` → per aggiornare un range di elementi  
+- `GetSum()` → per ottenere la somma di un range di elementi  
+<br>
+
+The `vector <*Node> roots` is used to store every new version of the tree.  
+Il `vector <*Node> roots` serve per memorizzare ogni nuova versione dell'albero.  
 
 ## 🧑‍💻 Author / Autore
 
