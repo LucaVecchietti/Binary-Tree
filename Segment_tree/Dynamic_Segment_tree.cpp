@@ -12,15 +12,14 @@ using namespace std;
 */
 
 class DynamicST {
+   private:
+       struct Node { // Structure for Dynamic Segment Tree Node
+           int start, end, sum, update; // Start and end indices of the segment, sum of the segment, and update value
+           Node *left, *right; // Pointers to the left and right children
+   
+           Node(int s, int e) : start(s), end(e), sum(0), update(0), left(nullptr), right(nullptr) {}
+       };
 
-    struct Node { // Structure for Dynamic Segment Tree Node
-        int start, end, sum, update; // Start and end indices of the segment, sum of the segment, and update value
-        Node *left, *right; // Pointers to the left and right children
-
-        Node(int s, int e) : start(s), end(e), sum(0), update(0), left(nullptr), right(nullptr) {}
-    };
-
-    private:
         vector <Node*> roots; // Vector to store roots of different versions of the segment tree
         int currentVersion; // Current version of the segment tree
         int size; // Size of the segment tree
