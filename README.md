@@ -182,7 +182,7 @@ class DynamicST {
 ```
 
 - `insert()' → for insert a new node
-- If a node is inserted in a position alredy occupied the privius node will be replaced  
+- If a node is inserted in a position alredy occupied the previus node will be replaced  
 - `push()` → for push the update to the children nodes  
 - The push() function is used to manage the lazy propagation  
 - `UpdateRange()` → for update all the elements in a given range  
