@@ -181,14 +181,16 @@ class DynamicST {
 };
 ```
 
-- `insert()' → for insert a new node  
+- `insert()' → for insert a new node
+- If a node is inserted in a position alredy occupied the privius node will be replaced  
 - `push()` → for push the update to the children nodes  
 - The push() function is used to manage the lazy propagation  
 - `UpdateRange()` → for update all the elements in a given range  
 - `GetSum()` → for query the sum in a given range  
 <br>
 
-- `insert()' → per inserire un nuovo nodo  
+- `insert()' → per inserire un nuovo nodo
+- Se un nodo viene inserito in una posizione già occupata il non preceente verrà sostituito  
 - `push()` → per propagare l'aggiornamento ai nodi figli  
 - La funzione  push() serve per gestire la propagazione pigra dell'aggiornamento  
 - `UpdateRange()` → per aggiornare un range di elementi  
