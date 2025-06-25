@@ -48,7 +48,7 @@ class DynamicST {
             if (key < start || key > end) return; // Out of range
 
             if (start == end) {
-                node->sum += value; // Update the sum at the leaf node
+                node->sum == value; // Update the sum at the leaf node
                 return;
             }
 
