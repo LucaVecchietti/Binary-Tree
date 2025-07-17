@@ -5,6 +5,7 @@ Questa repository contiene l'implamantazione di diversi albari binari in C++. (W
 
 - [AVL Tree](#🌲-AVL-Tree-in-C++-/-Albero-AVL-in-C++)
 - [Segment Tree](#🌲-Segment-Tree-in-C++)
+- [Vector Tree](#🌲-Vector-Tree-in-C++)
 
 # 🌲 AVL Tree in C++ / Albero AVL in C++
 
@@ -199,6 +200,117 @@ class DynamicST {
 
 The `vector <*Node> roots` is used to store every new version of the tree.  
 Il `vector <*Node> roots` serve per memorizzare ogni nuova versione dell'albero.  
+
+# 🌲Vector Tree in C++
+
+A Vector Tree is not a tree of vector, but I just call it with this name because it is a dynamic segment tree that works like a vector.  
+When we insert a new node in the tree, but the tree is 'full', the vector tree create a new root end the old tree became the left tree of the new tree.  
+So the size of the new tree is double.  
+
+Un Vector Tree non è un albero di vettori, ma sono io che lo ho chiamto così perchè consiste in un segment tree dinamico che funziona come un vettore.  
+Quando inseriamo un nuovo nodo nell'albero, ma l'albero è 'pieno', il vector tree crea una nuova radice e il vecchio albero diventa l'albero sinistro del nuovo albero.  
+Quindi la dimensione del nuovo albero è il doppio.  
+
+## ✅ Features / Funzionalità  
+
+- ✅ Supports multiple versions, enabling historical queries.  
+- ✅ Insert values like in a vector. ('insert()')  
+- ✅ Get the value of the leaves using a index. ('getValue()')
+- ✅ Support implementation of range queries. EX: ('GetSum()')
+<br>
+
+- ✅ Supporta più versioni, rendendo possibile operazioni sullo storico.  
+- ✅ Inserisci valori come in un vettore. ('insert()')  
+- ✅ Ottieni il valore delle foglie utilizzando in indice. ('getValue()')  
+- ✅ Supporta l'implementazione di operazioni sui range. Es: ('GetSum()')
+
+## 🔍 Technical Overview / Dettagli tecnici
+
+### Node structure / Struttura del nodo  (Vector Tree)  
+
+```cpp
+class Node {
+    public:
+        virtual ~Node() {}
+};
+
+class Leaf : public Node {
+    public:
+        int index;  
+        int value;  
+        Leaf(int val) : Node(), value(val) {}
+};
+
+class Vertex : public Node {
+    public:
+        Node* left; 
+        Node* right;    
+        int range;  
+        int start, end; 
+        int value;
+        Vertex(void) : Node() , range(0), value(0), left(nullptr), right(nullptr) {}
+};
+```
+
+### Tree structure / Struttura dell'albero (Vector Tree)  
+
+```cpp
+class VectorTree {
+    private:
+        class Node {};
+
+        class Leaf : public Node {};
+        
+        class Vertex : public Node {};
+
+        vector <Node*> leaves;
+        vector <Node*> roots;
+        int size;
+        int node_number;
+        int version;
+
+        void insert(int value, Node*& node, int start = 0, int end = -1) {}
+
+        int GetSum(Node* node, int start, int end) {}
+
+    public:
+
+        VectorTree(void) : size(0), node_number(0), version(0) {}
+        VectorTree(vector <int> values) : size(0), node_number(0), version(0) {}
+
+        void insert(int value) {}
+
+        int getValue(int index) {}
+
+        int GetSize(void) {}
+
+        int GetNodeNumber(void) {}
+
+        int GetVersion(void) {}
+
+        int GetSum (int Version, int start, int end) {}
+
+};
+```
+
+- 'insert()' -> for insert a new node.
+- 'insert()' is similar to the push_back function of the vector.
+- 'getValue()' -> for get the value of a leaf.
+- 'Getsize()' -> for get the size of the tree, so the number of leavs that can contain befor change size.
+- 'GetNodeNumber()' -> for get the number of leaves inserted.
+- 'GetVersion()' -> to get the number of versions.
+- 'GetSum()' -> Range sum.
+<br>  
+
+- 'insert()' -> per inserire un nuovo nodo.  
+- 'insert()' è simile alla funzione push_back di un vector.  
+- 'getValue()' -> per ottenere il valore di una foglia.  
+- 'Getsize()' -> per ottenere la dimensione dell'albero, ovvero il numero di foglie che può contenere prima di dover cambiare dimensione.  
+- 'GetNodeNumber()' -> per ottenere il numero di foglie inserite.  
+- 'GetVersion()' -> per ottenere il numero di versioni.  
+- 'GetSum()' -> somma su un intervallo.
+<br>
+
 
 ## 🧑‍💻 Author / Autore
 
